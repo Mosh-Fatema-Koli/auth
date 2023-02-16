@@ -4,6 +4,7 @@ import 'package:auth/view/home.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
@@ -44,7 +45,8 @@ class _LoginPageState extends State<LoginPage> {
       if ( response.statusCode == 200 ){
         final json =jsonDecode(response.body);
          print(json);
-       var pref= "Berear "+ json["token"];
+         var pref= "Berear "+ json["token"];
+        await GetStorage().write ("token", json["token"].toString() );
         print(jwt);
 
 
